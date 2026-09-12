@@ -2,6 +2,7 @@
 using namespace std; 
 
 
+// Approach 1 : use two freq maps and match the freq if yes then anagram if no return false.
 bool isAnagram(string s, string t) {
     
     // use freq map
