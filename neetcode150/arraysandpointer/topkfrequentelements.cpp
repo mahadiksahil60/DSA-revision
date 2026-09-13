@@ -46,12 +46,12 @@ vector<int> topKFrequent_old(vector<int>& nums, int k) {
 
 // Follow up: Your algorithm's time complexity must be better than O(n log n), where n is the array's size.
 // Approach 2 : The initial idea was to create a ele -> freq map and sort account to the values of the map 
-            //  But we cannot sort a map according to values - 
-            // New technique 
+            //  But we cannot sort a map according to values -  gap faced in implementation
+            // New technique - IMPORTANT
             // - create two maps first one num => freq
             // - Create a second map freq => array of nums
             // We already knew the max freq can be n -> max length of the array 
-            // Ran a reverse loop lookup the freq using rev_map and inserted into the ans variable till desired elements are received
+            // Ran a reverse loop from max_size to 0 and lookup the freq using rev_map and inserted into the ans variable till desired elements are received
 vector<int> topKFrequent(vector<int>& nums, int k) {
     int n = nums.size();
     unordered_map<int, int> mapp;  // from num -> freq 
