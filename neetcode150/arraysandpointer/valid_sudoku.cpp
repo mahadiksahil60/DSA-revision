@@ -54,40 +54,48 @@ bool isValidSudoku_old(vector<vector<char>>& board) {
 }
 
 // Practice
-bool isValidSudoku(vector<vector<char>>& board) {
+bool isValidSudoku(vector<vector<char>> &board)
+{
     set<pair<int, char>> col;
     unordered_map<int, unordered_set<char>> quad;
 
-    for (int i =0 ; i<9; i++) {
-        unordered_set<char> row; 
-        for (int j = 0; j<9; j++) {
-            
+    for (int i = 0; i < 9; i++)
+    {
+        unordered_set<char> row;
+        for (int j = 0; j < 9; j++)
+        {
+
             // for row
             if (row.find(board[i][j]) != row.end())
                 return false;
 
-            if (board[i][j] != '.') row.insert(board[i][j]);
-            
+            if (board[i][j] != '.')
+                row.insert(board[i][j]);
+
             // for col
-            if (col.find({j, board[i][j]}) != col.end()) return false;
-            
-            if (board[i][j] != '.') col.insert({j, board[i][j]});
-            
-            // for quad 
-            int box = (i/3) * 3 + (j/3);
-            if (quad.find(box) != quad.end()) {
-                if (quad[box].find(board[i][j]) != quad[box].end()) { 
+            if (col.find({j, board[i][j]}) != col.end())
+                return false;
+
+            if (board[i][j] != '.')
+                col.insert({j, board[i][j]});
+
+            // for quad
+            int box = (i / 3) * 3 + (j / 3);
+            if (quad.find(box) != quad.end())
+            {
+                if (quad[box].find(board[i][j]) != quad[box].end())
+                {
                     return false;
                 }
             }
-            
-            if (board[i][j] != '.') quad[box].insert(board[i][j]);
+
+            if (board[i][j] != '.')
+                quad[box].insert(board[i][j]);
         }
     }
 
     return true;
 }
-
 
 int main() { 
     vector<vector<char>> board = {
