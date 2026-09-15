@@ -44,7 +44,7 @@ int longestConsecutive(vector<int>& nums) {
         }
     }
 
-    return max_ans+1; # since we are calculating jumps adding + 1 will give the number of elements which is the desired output
+    return max_ans+1; // since we are calculating jumps adding + 1 will give the number of elements which is the desired output
 }
 
 int main() {
