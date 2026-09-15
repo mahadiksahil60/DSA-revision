@@ -55,7 +55,6 @@ vector<int> productExceptSelf_old(vector<int>& nums) {
     ans.push_back(prefix[suffix.size()-2]);
 
     return ans;
-    
 }
 
 // Approach 2 : Optimized space complexity, use the same ans array to apply the prefix and suffix multiplication.
