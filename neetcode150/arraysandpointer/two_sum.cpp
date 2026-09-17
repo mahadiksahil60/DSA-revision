@@ -25,7 +25,7 @@ vector<int> twoSum(vector<int>& nums, int target) {
     unordered_map<int, int> map; 
     // loop for storing every element
     for (int i=0;i<n;i++) { 
-        map[nums[i]] = i;
+        map[nums[i]] = i; // leetcode two sum problem guarantees one unique sol per test case. Otherwise this could break since there can be duplicate elements inside the array and this will overwrite the index leading to missing some possible solutions.
     }
 
     // loop for checking if the target - current exists in the map; 
