@@ -39,7 +39,14 @@ int trap_old(vector<int> &height)
     return ans;
 }
 
+/// @brief Correct Approch - We were thinking about boundaruies and water between them, but the right approcach is to think of water above indivdual index and adding it.
+// We maintain a left max and right max to determine the water level. 
+// If curr is greater than maxes update the maxes. 
+
+/// @param height 
+/// @return 
 int trap(vector<int> &height) {
+        else { 
     int n = height.size();
     int ans = 0;
     int i = 0;
@@ -57,7 +64,6 @@ int trap(vector<int> &height) {
 
             i++;
         }
-        else { 
             if (height[j] >= right_max) { 
                 right_max = height[j];
             }
