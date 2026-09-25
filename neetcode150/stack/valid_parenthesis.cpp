@@ -3,8 +3,8 @@ using namespace std;
 
 /// @brief Appraoch 1 : create a stack and an unordered map for storing opp pair of brackets. 
 // thorugh a loop insert if its a opening brancket. if its a closing brached, check if a corresponting closing branked exists in the mop
-/// @param s 
-/// @return 
+/// @param s
+/// @return
 bool isValid(string s) {
     stack<char> st;
 	unordered_map<char, char> match = {{')', '('}, {']', '['}, {'}', '{'}};
