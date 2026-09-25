@@ -5,7 +5,7 @@ class MinStack {
 
 private:    
     vector<int> stack;  // This is used to store actual elements,
-    vector<int> minStack; // This is used to maintain the min element at each level.
+    vector<int> minStack; // This is used to maintain the min element at every level.
 MinStack() {
     
 }
