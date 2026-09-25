@@ -16,7 +16,7 @@ int give_cal(int left_operand, int right_operand, string operator_sign) {
     }
 }
 
-// Apporach 1 : We insert the numbers into a stack until we encounter a opertor. once operator is received 
+// Approach 1 : We insert the numbers into a stack until we encounter a opertor. once operator is received 
 // pop two operands from the stack and give the calculation and push the calculated value into the stack
 // this way there will always be two operands before a operator. // IMP NOTE Hint
 // Solved in first attempt;
