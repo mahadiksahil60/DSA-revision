@@ -38,6 +38,16 @@ vector<int> dailyTemperatures_old(vector<int>& temperatures) {
 // "Am I repeatedly searching through elements I've already looked at?"
 // If yes, look for a data structure that lets you remember useful unresolved elements.
 // For "next greater/smaller" problems, that structure is usually a monotonic stack.
+
+// IMP NOTE : 
+// Need nearest/next greater or smaller
+//              ↓
+// Need to repeatedly find an element satisfying
+// a comparison condition
+//              ↓
+// Elements become useless after being resolved
+//              ↓
+// Consider monotonic stack
 vector<int> dailyTemperatures(vector<int>& temperatures) {
     int n = temperatures.size();
     stack<int> s;
