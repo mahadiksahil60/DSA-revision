@@ -1,10 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Approach 1 : might need to push the hourly positions into the stack just a intuition
+// Approach 1 : might need to push the hourly positions into the stack just a intuition (Incorrect)
 // irrevelant param is higher speed we have to discard it
 // need to use stack
 
+// Approach 2 : 
 // Intution : need to calculate the time of arraival - time = (target-position)/speed. Then check if can reach with or before the ahead car. 
 // Need to sort the cars from closest to farthest. 
 // Check if the time taken by curr vehicle is greater means it will not be able to catch the fleet ahead so push it into the stack 
@@ -20,8 +21,8 @@ int carFleet(int target, vector<int>& position, vector<int>& speed) {
     for (int i = 0; i<n; i++) { 
         pos.push_back({position[i], speed[i]}); 
     }
-    
-    // sorting according to the position
+
+    // sorting according to the position :)
     sort(pos.begin(), pos.end(), [](const auto &a, const auto &b)
          { return a.first > b.first; }); // Logic to sort accoirding to the one of the value in the pair. 
 
