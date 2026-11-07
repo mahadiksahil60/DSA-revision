@@ -20,7 +20,7 @@ vector<int> twoSum_old(vector<int>& nums, int target) {
 
 // Approach 2 : Insert the elements into a hashmap containing the index and the element and then iterate over the array and check 
 // that target - current_element = exist in the array ? if yes thats the solution 
-vector<int> twoSum(vector<int>& nums, int target) {
+vector<int> twoSum_v2(vector<int>& nums, int target) {
     int n = nums.size();
     unordered_map<int, int> map; 
     // loop for storing every element
@@ -36,7 +36,7 @@ vector<int> twoSum(vector<int>& nums, int target) {
 
         if (map.find(element_needed) != map.end() && map[element_needed] != i) { 
             // NOTE : The beyond add condition in the above if statement was missed and caused a problem where target - current gave 
-            // equal to current elemetn and the map looked up and returned the same elements index.
+            // equal to current elemetn     and the map looked up and returned the same elements index.
             // element is foud
             return {i, map[element_needed]};
         }
@@ -44,10 +44,28 @@ vector<int> twoSum(vector<int>& nums, int target) {
     return {};
 }
 
+// Approach 2 : One pass approach
+vector<int> twoSum(vector<int>& nums, int target ) { 
+    int n = nums.size();
+    unordered_map<int, int> freq; 
+
+    for(int i=0; i<n; i++)  
+    {
+        int element_needed = target - nums[i]; 
+        if (freq.find(element_needed) != freq.end() && freq[element_needed] != i) // should not return the same elemer 
+        {
+            return {i, freq[element_needed]};
+        }
+
+        freq[nums[i]] = i;
+    }
+
+    return {};
+}
 
 int main() { 
     vector<int> que = {3,2,4};
-    int target = 6;
+    int target = 5;
     vector<int> ans = twoSum(que, target);
     for (int x : ans) { 
         cout << x << endl; 
