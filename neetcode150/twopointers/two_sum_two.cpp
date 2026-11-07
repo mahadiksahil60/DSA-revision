@@ -76,6 +76,7 @@ vector<int> twoSum_old_v2(vector<int> &numbers, int target)
 	return {};
 }
 
+// Correct approach
 /// @brief In this approach will keep the pointers in opp direction. This was the first intuition.
 /// @param numbers
 /// @param target
