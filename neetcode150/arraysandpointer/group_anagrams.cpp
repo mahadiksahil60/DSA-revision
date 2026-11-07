@@ -23,7 +23,7 @@ std::string printIntArray(const std::vector<int>& vec) {
 
 // In an array of strings we have to group together anagrams 
 // Approach 1 : Brute Force : Sort all the elements in copy array and store them as index and then reconstruct the entire array space with original strs array - Solved wihtout hint 
-vector<vector<string>> groupAnagrams(vector<string>& strs) {
+vector<vector<string>> groupAnagrams_v1(vector<string>& strs) {
     int n = strs.size();
     if (n == 1) return {{strs[0]}};
     vector<string> strs2 = strs;
@@ -45,6 +45,61 @@ vector<vector<string>> groupAnagrams(vector<string>& strs) {
     } 
     return ans;
 }
+
+// Appraoch 2 : Failed approach because the ascii sum can be same of non anagrams as well a better approach is closer to this instead of using ascii sum use freq array 
+// as used in normal anagrma problem
+// vector<vector<string>> groupAnagrams_v2(vector<string>& strs) {
+//     // will determine by ascii values. 
+//     int n = strs.size();
+//     unordered_map<int, vector<string>> mapp; 
+//     for (int i=0; i<n;i++) {
+//         int sum = 0;
+//         for (int j = 0; j < strs[i].length(); j++) {
+//             sum += strs[i][j] - 'a';
+//         }
+//         mapp[sum].push_back(strs[i]);
+//     }   
+//     vector<vector<string>> final_ans; 
+//     for (const auto& [num, vec] : mapp) {
+//         final_ans.push_back(vec);
+//     }
+
+//     return final_ans;
+// }
+
+// Approch 3 : Using freq array to generate a unique hash key for each element. The idea was the same in approach 2 but the chouce of key was wrong. 
+vector<vector<string>> groupAnagrams(vector<string>& strs) {
+    int n = strs.size();
+    unordered_map<string, vector<string>> mapp;
+    
+    for (auto& str : strs)  {
+        int freq[26] = {0};
+        
+        for (char ch : str) { 
+            freq[ch-'a']++; 
+        }
+
+        string key; 
+        for (int i=0; i<26; i++) { 
+            key += to_string(freq[i]) + "#";
+        }
+
+        mapp[key].push_back(str);
+    }
+
+
+    vector<vector<string>> final_ans; 
+    // need a loop to add elements in the final ans
+    for (auto& entry : mapp) {
+        auto key = entry.first;
+        auto val = entry.second;
+        final_ans.push_back(val);
+    }
+    return final_ans;  
+}
+
+
+
 
 int main() { 
     vector<string> strs = {"eat","tea","tan","ate","nat","bat"};
