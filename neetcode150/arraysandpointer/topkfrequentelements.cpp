@@ -43,6 +43,35 @@ vector<int> topKFrequent_old(vector<int>& nums, int k) {
     return vector<int>(ans.begin(), ans.begin() + k);
 }   // Overall time complexity - O(n) + O(m)*O(logm) + O(m^m)
 
+// Another failed attempt time complexity - O(nlogn)
+vector<int> topKFrequent(vector<int>& nums, int k) {
+    int n = nums.size();
+    unordered_map<int, int> mapp; 
+    for (int i=0; i<n; i++) { 
+        mapp[nums[i]]++;
+    }
+
+    // whenever we need to sort unrodered map by value its not possible so copy it to a pair and then sort the part and push the elements into the array. 
+
+    vector<pair<int, int>> vec(mapp.begin(), mapp.end());        // 3. Sort the vector by value using a lambda function
+    // For ascending order use: a.second < b.second
+    // For descending order use: a.second > b.second
+    std::sort(vec.begin(), vec.end(), [](const auto& a, const auto& b) {
+        return a.second >  b.second;
+    });
+
+    vector<int> ans;
+
+    for (int i = 0; i < k; i++) {
+        ans.push_back(vec[i].first);
+    }
+
+    return ans;      
+}
+
+
+
+
 
 // Follow up: Your algorithm's time complexity must be better than O(n log n), where n is the array's size.
 // Approach 2 : The initial idea was to create a ele -> freq map and sort account to the values of the map 
@@ -81,6 +110,41 @@ vector<int> topKFrequent(vector<int>& nums, int k) {
 
     return ans;
 }
+
+
+// Attempt 2 : Bucket sort
+// 1) make a normal freq map 
+// 2) Create a bucket of same size of nums.size() + 1;
+// 3) iterate over the bucket and append the freq in a array in desceding order till k 
+vector<int> topKFrequent(vector<int>& nums, int k) {
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        int n = nums.size();
+        unordered_map<int, int> freq;
+        for (int x : nums) {
+            freq[x]++;
+        }
+        
+        vector<vector<int>> buckets(nums.size() + 1);
+
+        for (auto& entry : freq) {
+            buckets[entry.second].push_back(entry.first);
+        }
+
+        vector<int> ans;
+        for (int i = buckets.size() - 1; i >= 0; i--) {
+            for (int num : buckets[i]) {
+
+                ans.push_back(num);
+
+                if (ans.size() == k) {
+                    return ans;
+                }
+            }
+        }
+        return ans;
+    }
+
+
 
 int main() { 
     vector<int> nums = {1,1,1,2,2,3};
